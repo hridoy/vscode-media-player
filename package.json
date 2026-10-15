@@ -1,0 +1,43 @@
+{
+  "name": "video-autoplay",
+  "displayName": "Video Autoplay",
+  "description": "Automatically plays next video in the folder",
+  "version": "0.0.9",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:videoAutoplay.play"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "videoAutoplay.play",
+        "title": "Play Video"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "videoAutoplay.play",
+          "when": "resourceExtname =~ /\\.(mp4|mkv|mov|webm|avi)$/i",
+          "group": "navigation@1"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "npm version patch --no-git-tag-version && tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^5.0.0"
+  }
+}
